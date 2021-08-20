@@ -1,0 +1,5 @@
+## pip install -r requirements.txt
+
+numpy
+transformers==4.9.2
+pymilvus==0.2.14

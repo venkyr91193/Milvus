@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  milvus:
+    build:
+      context: .
+      dockerfile: Dockerfile_sqllite
+    container_name: milvus
+    env_file:
+      - .env
+    command: [ "/var/lib/milvus/start_sqllite.sh" ]
+    ports:
+      - 19530:19530
+      - 19121:19121
+    volumes:
+      - ./milvus/conf:/var/lib/milvus/conf
+      - ./milvus/db:/var/lib/milvus/db
+      - ./milvus/logs:/var/lib/milvus/logs
+      - ./milvus/wal:/var/lib/milvus/wal

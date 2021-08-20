@@ -1,0 +1,8 @@
+FROM milvusdb/milvus:0.10.1-cpu-d072020-bd02b1
+
+RUN apt-get update -y \
+    && apt-get install -y gettext-base \
+    && apt-get install -y mysql-client
+
+COPY ./config/server_config_template_sqllite.yaml /var/lib/milvus
+COPY ./scripts/start_sqllite.sh /var/lib/milvus

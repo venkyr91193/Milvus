@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    env_file:
+      - .env
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql/db:/var/lib/mysql
+  milvus:
+    build:
+      context: .
+      dockerfile: Dockerfile_sql
+    container_name: milvus
+    env_file:
+      - .env
+    command: [ "/var/lib/milvus/start.sh" ]
+    depends_on:
+      - mysql
+    ports:
+      - 19530:19530
+      - 19121:19121
+    volumes:
+      - ./milvus/conf:/var/lib/milvus/conf
+      - ./milvus/db:/var/lib/milvus/db
+      - ./milvus/logs:/var/lib/milvus/logs
+      - ./milvus/wal:/var/lib/milvus/wal
+    healthcheck:
+      test: mysqladmin ping --silent
