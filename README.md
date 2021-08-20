@@ -12,5 +12,5 @@ A library which helps as to build a vector based search engine system
 # Mivlus docs
 https://milvus.io/docs/v1.0.0/milvus_docker-cpu.md
 
-# Transfromer model docs
+# Transformer model docs
 https://huggingface.co/facebook/bart-large-mnli
